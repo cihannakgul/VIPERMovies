@@ -9,21 +9,24 @@
 /* Begin PBXBuildFile section */
 		F0A24B3A2951EBD900AD98E4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A24B392951EBD900AD98E4 /* AppDelegate.swift */; };
 		F0A24B3C2951EBD900AD98E4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A24B3B2951EBD900AD98E4 /* SceneDelegate.swift */; };
-		F0A24B3E2951EBD900AD98E4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A24B3D2951EBD900AD98E4 /* ViewController.swift */; };
-		F0A24B412951EBD900AD98E4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F0A24B3F2951EBD900AD98E4 /* Main.storyboard */; };
+		F0A24B3E2951EBD900AD98E4 /* MoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A24B3D2951EBD900AD98E4 /* MoviesViewController.swift */; };
 		F0A24B432951EBDC00AD98E4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0A24B422951EBDC00AD98E4 /* Assets.xcassets */; };
 		F0A24B462951EBDC00AD98E4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F0A24B442951EBDC00AD98E4 /* LaunchScreen.storyboard */; };
+		F0A24B4F2951EC2500AD98E4 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = F0A24B4E2951EC2500AD98E4 /* Alamofire */; };
+		F0A24B512951EC9500AD98E4 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A24B502951EC9500AD98E4 /* Movie.swift */; };
+		F0A24B532951ED5E00AD98E4 /* MovieResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A24B522951ED5E00AD98E4 /* MovieResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		F0A24B362951EBD900AD98E4 /* MovieVIPERPattern.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieVIPERPattern.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0A24B392951EBD900AD98E4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F0A24B3B2951EBD900AD98E4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		F0A24B3D2951EBD900AD98E4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		F0A24B402951EBD900AD98E4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		F0A24B3D2951EBD900AD98E4 /* MoviesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesViewController.swift; sourceTree = "<group>"; };
 		F0A24B422951EBDC00AD98E4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F0A24B452951EBDC00AD98E4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F0A24B472951EBDC00AD98E4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F0A24B502951EC9500AD98E4 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
+		F0A24B522951ED5E00AD98E4 /* MovieResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +34,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F0A24B4F2951EC2500AD98E4 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,11 +62,12 @@
 			children = (
 				F0A24B392951EBD900AD98E4 /* AppDelegate.swift */,
 				F0A24B3B2951EBD900AD98E4 /* SceneDelegate.swift */,
-				F0A24B3D2951EBD900AD98E4 /* ViewController.swift */,
-				F0A24B3F2951EBD900AD98E4 /* Main.storyboard */,
+				F0A24B3D2951EBD900AD98E4 /* MoviesViewController.swift */,
 				F0A24B422951EBDC00AD98E4 /* Assets.xcassets */,
 				F0A24B442951EBDC00AD98E4 /* LaunchScreen.storyboard */,
 				F0A24B472951EBDC00AD98E4 /* Info.plist */,
+				F0A24B502951EC9500AD98E4 /* Movie.swift */,
+				F0A24B522951ED5E00AD98E4 /* MovieResponse.swift */,
 			);
 			path = MovieVIPERPattern;
 			sourceTree = "<group>";
@@ -83,6 +88,9 @@
 			dependencies = (
 			);
 			name = MovieVIPERPattern;
+			packageProductDependencies = (
+				F0A24B4E2951EC2500AD98E4 /* Alamofire */,
+			);
 			productName = MovieVIPERPattern;
 			productReference = F0A24B362951EBD900AD98E4 /* MovieVIPERPattern.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +119,9 @@
 				Base,
 			);
 			mainGroup = F0A24B2D2951EBD900AD98E4;
+			packageReferences = (
+				F0A24B4D2951EC2500AD98E4 /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
 			productRefGroup = F0A24B372951EBD900AD98E4 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -127,7 +138,6 @@
 			files = (
 				F0A24B462951EBDC00AD98E4 /* LaunchScreen.storyboard in Resources */,
 				F0A24B432951EBDC00AD98E4 /* Assets.xcassets in Resources */,
-				F0A24B412951EBD900AD98E4 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,8 +148,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F0A24B3E2951EBD900AD98E4 /* ViewController.swift in Sources */,
+				F0A24B3E2951EBD900AD98E4 /* MoviesViewController.swift in Sources */,
+				F0A24B532951ED5E00AD98E4 /* MovieResponse.swift in Sources */,
 				F0A24B3A2951EBD900AD98E4 /* AppDelegate.swift in Sources */,
+				F0A24B512951EC9500AD98E4 /* Movie.swift in Sources */,
 				F0A24B3C2951EBD900AD98E4 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -147,14 +159,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		F0A24B3F2951EBD900AD98E4 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F0A24B402951EBD900AD98E4 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		F0A24B442951EBDC00AD98E4 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -292,7 +296,6 @@
 				INFOPLIST_FILE = MovieVIPERPattern/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -320,7 +323,6 @@
 				INFOPLIST_FILE = MovieVIPERPattern/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -358,6 +360,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		F0A24B4D2951EC2500AD98E4 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		F0A24B4E2951EC2500AD98E4 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F0A24B4D2951EC2500AD98E4 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = F0A24B2E2951EBD900AD98E4 /* Project object */;
 }
