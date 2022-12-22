@@ -24,7 +24,7 @@ class MoviesViewController: UIViewController {
     
     
     
-    func getNew(){ // oldWay
+    func getNew(){ 
         
         AF.request("http://www.omdbapi.com/?s=harry&apikey=ff740049", method: .get).response{ response in
             if let data = response.data
@@ -44,27 +44,7 @@ class MoviesViewController: UIViewController {
         }
     }
     
-    func get(){ // oldWay
-        
-        AF.request("http://www.omdbapi.com/?s=harry&apikey=ff740049", method: .get).response{ response in
-            if let data = response.data
-            {
-                do{
-                    if let json = try JSONSerialization.jsonObject(with: data) as? [String:Any]{
-                        if let kisiler = json["Search"] as? [[String:Any]]{
-                            for kisi in kisiler{
-                                print(kisi["Title"])
-                            }
-                        }
-                    }
-                }
-                catch{
-                    print(String(describing: error))
-                }
-            }
-        }
-    }
-    
+     
 
 }
 
