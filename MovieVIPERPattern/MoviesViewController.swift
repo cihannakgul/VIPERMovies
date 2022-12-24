@@ -12,12 +12,32 @@ class MoviesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        view.backgroundColor = .white
-        
-        
-        title = "Movies List"
+      
         //getNew()
         //get()
+        configureUI()
+    }
+    
+    
+    func configureUI(){
+        view.backgroundColor = .white
+  
+  
+
+       navigationController?.navigationBar.prefersLargeTitles = true
+        
+        navigationItem.title = "Movies List"
+      
+
+        
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = .systemMint
+        appearance.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        navigationController?.navigationBar.standardAppearance = appearance;
+        navigationController?.navigationBar.scrollEdgeAppearance = navigationController?.navigationBar.standardAppearance
+       // navigationController?.navigationBar.backgroundColor = UIColor(red: 255/255, green: 225/255, blue: 125/255, alpha: 1)
+        
     }
     
     
@@ -48,3 +68,4 @@ class MoviesViewController: UIViewController {
 
 }
 
+  
