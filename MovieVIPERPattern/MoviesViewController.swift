@@ -8,39 +8,62 @@
 import UIKit
 import Alamofire
 class MoviesViewController: UIViewController {
-
+ 
+    let searchBar = UISearchBar()
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        searchBar.delegate = self
       
-        //getNew()
-        //get()
         configureUI()
     }
     
+    @objc func searchBarFunc(){
+        print("it work")
+        search(shouldShow: true)
+
+        searchBar.becomeFirstResponder() // for showing keyboard
+        
+    }
+    
+    
+    func search(shouldShow:Bool){
+      searchBarShow(shouldShow: !shouldShow)
+        searchBar.showsCancelButton = shouldShow
+        navigationItem.titleView = shouldShow ? searchBar : nil
+    }
+    
+    func searchBarShow(shouldShow:Bool){
+        if shouldShow{
+            navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchBarFunc))
+        }else{
+            navigationItem.rightBarButtonItem = nil
+        }
+    }
     
     func configureUI(){
         view.backgroundColor = .white
-  
-  
-
+        searchBar.sizeToFit()
+   
        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.barStyle = .black
+        navigationController?.navigationBar.tintColor = .white
+     
         
         navigationItem.title = "Movies List"
       
-
-        
+ 
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
         appearance.backgroundColor = .systemMint
         appearance.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        
         navigationController?.navigationBar.standardAppearance = appearance;
         navigationController?.navigationBar.scrollEdgeAppearance = navigationController?.navigationBar.standardAppearance
+        
+        searchBarShow(shouldShow: true)
        // navigationController?.navigationBar.backgroundColor = UIColor(red: 255/255, green: 225/255, blue: 125/255, alpha: 1)
         
     }
-    
-    
     
     
     
@@ -64,8 +87,18 @@ class MoviesViewController: UIViewController {
         }
     }
     
-     
 
+}
+
+extension MoviesViewController : UISearchBarDelegate{
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+      
+      search(shouldShow: false)
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        print(searchBar.text)
+    }
 }
 
   
