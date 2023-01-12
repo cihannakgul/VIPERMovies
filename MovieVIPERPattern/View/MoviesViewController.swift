@@ -97,7 +97,7 @@ extension MoviesViewController : UISearchBarDelegate{
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        print(searchBar.text)
+        print(searchBar.text) // searchText
     }
 }
 
