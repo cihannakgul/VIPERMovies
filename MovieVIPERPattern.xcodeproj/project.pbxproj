@@ -70,12 +70,7 @@
 		F0A24B382951EBD900AD98E4 /* MovieVIPERPattern */ = {
 			isa = PBXGroup;
 			children = (
-				F0E932C729702D00007D3DC6 /* Protocols */,
-				F0E932BE29702CA5007D3DC6 /* Router */,
-				F0E932BD29702C9C007D3DC6 /* Entity */,
-				F0E932BC29702C5A007D3DC6 /* Presenter */,
-				F0E932BA29702C4B007D3DC6 /* Interactor */,
-				F0E932B929702C39007D3DC6 /* View */,
+				F0E932CA2970C5B3007D3DC6 /* HomePageModule */,
 				F0A24B392951EBD900AD98E4 /* AppDelegate.swift */,
 				F0A24B3B2951EBD900AD98E4 /* SceneDelegate.swift */,
 				F0A24B422951EBDC00AD98E4 /* Assets.xcassets */,
@@ -133,6 +128,19 @@
 				F0E932C829702D26007D3DC6 /* Protocols.swift */,
 			);
 			path = Protocols;
+			sourceTree = "<group>";
+		};
+		F0E932CA2970C5B3007D3DC6 /* HomePageModule */ = {
+			isa = PBXGroup;
+			children = (
+				F0E932C729702D00007D3DC6 /* Protocols */,
+				F0E932BE29702CA5007D3DC6 /* Router */,
+				F0E932BD29702C9C007D3DC6 /* Entity */,
+				F0E932BC29702C5A007D3DC6 /* Presenter */,
+				F0E932BA29702C4B007D3DC6 /* Interactor */,
+				F0E932B929702C39007D3DC6 /* View */,
+			);
+			path = HomePageModule;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
