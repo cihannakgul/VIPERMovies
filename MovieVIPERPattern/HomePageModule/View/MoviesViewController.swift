@@ -10,12 +10,24 @@ import Alamofire
 class MoviesViewController: UIViewController {
  
     let searchBar = UISearchBar()
+    var localMovieList : [Movie] = []
+    var presenter : ViewToPresenterProtocol?
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBar.delegate = self
-      
+        Router.createModule(ref: self)
         configureUI()
+        
+        getDatasFromInteractor()
     }
+    
+    
+    func getDatasFromInteractor(){
+        print("Over here2")
+        presenter?.getJSONDatas()
+        
+    }
+   
     
     @objc func searchBarFunc(){
         print("it work")
@@ -65,28 +77,7 @@ class MoviesViewController: UIViewController {
         
     }
     
-    
-    
-    func getNew(){ 
-        
-        AF.request("http://www.omdbapi.com/?s=harry&apikey=ff740049", method: .get).response{ response in
-            if let data = response.data
-            {
-                do{
-                    let cevap = try JSONDecoder().decode(MovieResponse.self, from: data)
-                    if let liste = cevap.Search{
-                        for kisi in liste{
-                            print(kisi.Title!)
-                        }
-                    }
-                }
-                catch{
-                    print(String(describing: error))
-                }
-            }
-        }
-    }
-    
+     
 
 }
 
@@ -100,5 +91,14 @@ extension MoviesViewController : UISearchBarDelegate{
         print(searchBar.text) // searchText
     }
 }
+ 
+//MARK: - PresenterToViewProtocol
 
-  
+extension MoviesViewController : PresenterToViewProtocol{
+    func sendPresenterToView(data: [Movie]) {
+        localMovieList = data
+        print(localMovieList[0].Year)
+    }
+    
+    
+}
