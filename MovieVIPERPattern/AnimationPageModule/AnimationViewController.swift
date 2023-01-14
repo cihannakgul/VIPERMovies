@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import Lottie
 
-var animationView : LottieAnimationView?
+ var animationView : LottieAnimationView?
 
 class AnimationViewController: UIViewController {
     override func viewDidLoad() {
@@ -22,12 +22,13 @@ class AnimationViewController: UIViewController {
        
          view.addSubview(animationView!)
           animationView!.play()
-       
+ 
         DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
            self.navigationController?.pushViewController(MoviesViewController(), animated: true)
-            //self.present(MoviesViewController(), animated: true)
-        }
+         }
     }
+    
+    
 
 }
 

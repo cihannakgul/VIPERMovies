@@ -11,7 +11,7 @@ import Foundation
 protocol PresenterToInteractorProtocol{
     var presenter:InteractorToPresenterProtocol?{get set}
     
-    func getJSONDatasInteractor()
+    func getJSONDatasInteractor(searchKey:String)
 
 }
 
@@ -22,7 +22,7 @@ protocol InteractorToPresenterProtocol{
 protocol ViewToPresenterProtocol{
     var interactor:PresenterToInteractorProtocol?{get set}
     var viewControl: PresenterToViewProtocol?{get set}
-    func getJSONDatas()
+    func getJSONDatas(searchKey:String)
 }
 
 protocol PresenterToViewProtocol{

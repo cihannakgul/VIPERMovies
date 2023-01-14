@@ -13,9 +13,9 @@ import Foundation
     
     var viewControl: PresenterToViewProtocol?
     
-    func getJSONDatas() {
+      func getJSONDatas(searchKey : String) {
         print("Over here3")
-        interactor?.getJSONDatasInteractor()
+        interactor?.getJSONDatasInteractor(searchKey: searchKey)
     }
   
     
