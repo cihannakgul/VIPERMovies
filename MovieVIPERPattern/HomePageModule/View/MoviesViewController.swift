@@ -62,7 +62,7 @@ import Lottie
         }()
    
     func getDatasFromInteractor(){
-         presenter?.getJSONDatas()
+        presenter?.getJSONDatas(searchKey: "harry")
         
     }
    
@@ -132,7 +132,11 @@ extension MoviesViewController : UISearchBarDelegate{
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        print(searchBar.text) // searchText
+      //        presenter?.getJSONDatas(searchKey: "Harry")
+      
+        if searchText != nil{
+            presenter?.getJSONDatas(searchKey: searchText)
+        }
     }
 }
  
@@ -140,29 +144,22 @@ extension MoviesViewController : UISearchBarDelegate{
 
 extension MoviesViewController : PresenterToViewProtocol{
     func sendPresenterToView(data: [Movie]) {
-        print("over here4")
-        localMovieList = data
+         localMovieList = data
         newCollection.reloadData()
-        print(localMovieList[0].Year)
-    }
+     }
 }
 
  
 extension MoviesViewController : UICollectionViewDelegate, UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "customMovieCell", for: indexPath) as? SubclassedCollectionViewCell
-        print("over here5")
-         let data = localMovieList[indexPath.item]
+          let data = localMovieList[indexPath.item]
  
         cell!.textView.text = data.Title ?? "not"
        
 
          cell?.imageView.kf.setImage(with: URL(string: data.Poster ?? ""))
- 
-         if cell == nil{
-            print("cell is nil")
-        }
-        
+  
         return cell ?? UICollectionViewCell()
         
         
@@ -191,7 +188,7 @@ class SubclassedCollectionViewCell: UICollectionViewCell {
     
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.backgroundColor = .yellow
+        imageView.backgroundColor = .white
          return imageView
     }()
     override init(frame: CGRect) {
