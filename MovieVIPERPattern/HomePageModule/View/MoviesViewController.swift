@@ -12,26 +12,57 @@ class MoviesViewController: UIViewController {
     let searchBar = UISearchBar()
     var localMovieList : [Movie] = []
     var presenter : ViewToPresenterProtocol?
+    
+    var collectionView: UICollectionView!
+    
+    var data = [UIColor.red, UIColor.green, UIColor.blue, UIColor.green, UIColor.purple, UIColor.orange, UIColor.blue, UIColor.green, UIColor.blue, UIColor.green, UIColor.red, UIColor.green, UIColor.blue, UIColor.green, UIColor.purple, UIColor.orange, UIColor.blue, UIColor.green, UIColor.blue, UIColor.green, UIColor.red, UIColor.green, UIColor.blue, UIColor.green, UIColor.purple, UIColor.orange, UIColor.blue, UIColor.green, UIColor.blue, UIColor.green, UIColor.red, UIColor.green, UIColor.blue, UIColor.green, UIColor.purple, UIColor.orange, UIColor.blue, UIColor.green, UIColor.blue, UIColor.green]
     override func viewDidLoad() {
         super.viewDidLoad()
-        searchBar.delegate = self
-        Router.createModule(ref: self)
         configureUI()
+        searchBar.delegate = self
+    
+        
+        newCollection.dataSource = self
+        newCollection.delegate = self
+        
+         
+ 
+        self.newCollection.register(SubclassedCollectionViewCell.self, forCellWithReuseIdentifier: "customMovieCell")
+      
+  
+        //Router.createModule(ref: self)
+       
         
         getDatasFromInteractor()
     }
+   
     
+     
     
+    private lazy var newCollection: UICollectionView = {
+            let layout = UICollectionViewFlowLayout()
+           // layout.minimumLineSpacing = .zero
+           // layout.minimumInteritemSpacing = .zero
+           // layout.sectionInset = .zero
+        
+        layout.itemSize = CGSize(width: 200, height: 300)
+        layout.scrollDirection = .vertical
+            let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.register(SubclassedCollectionViewCell.self, forCellWithReuseIdentifier: "customMovieCell")
+        collectionView.backgroundColor = .black
+        
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+       return collectionView
+        }()
+   
     func getDatasFromInteractor(){
-        print("Over here2")
-        presenter?.getJSONDatas()
+         presenter?.getJSONDatas()
         
     }
    
     
     @objc func searchBarFunc(){
-        print("it work")
-        search(shouldShow: true)
+         search(shouldShow: true)
 
         searchBar.becomeFirstResponder() // for showing keyboard
         
@@ -52,9 +83,15 @@ class MoviesViewController: UIViewController {
         }
     }
     
+    
     func configureUI(){
+        
+        
+        
+        view.addSubview(newCollection)
         view.backgroundColor = .white
         searchBar.sizeToFit()
+      //
    
        navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.barStyle = .black
@@ -71,9 +108,22 @@ class MoviesViewController: UIViewController {
         
         navigationController?.navigationBar.standardAppearance = appearance;
         navigationController?.navigationBar.scrollEdgeAppearance = navigationController?.navigationBar.standardAppearance
+  
+ 
+        NSLayoutConstraint.activate([
         
+            newCollection.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            newCollection.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            newCollection.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+           // newCollection.heightAnchor.constraint(equalToConstant: 100)
+            newCollection.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+
+            
+        ])
+       
         searchBarShow(shouldShow: true)
-       // navigationController?.navigationBar.backgroundColor = UIColor(red: 255/255, green: 225/255, blue: 125/255, alpha: 1)
+         
+     
         
     }
     
@@ -99,6 +149,42 @@ extension MoviesViewController : PresenterToViewProtocol{
         localMovieList = data
         print(localMovieList[0].Year)
     }
+}
+
+
+
+
+
+
+
+extension MoviesViewController : UICollectionViewDelegate, UICollectionViewDataSource{
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "customMovieCell", for: indexPath) as? SubclassedCollectionViewCell
+            let data = self.data[indexPath.item]
+        cell?.setupCell(color: data)
+        
+        return cell ?? UICollectionViewCell()
+        
+        
+        
+    }
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        return data.count
+    }
     
     
+    
+}
+
+
+class SubclassedCollectionViewCell: UICollectionViewCell {
+    
+     
+     
+    func setupCell(color: UIColor) {
+        self.backgroundColor = color
+       
+    
+    }
 }
