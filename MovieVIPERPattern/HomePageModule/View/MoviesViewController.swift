@@ -6,8 +6,9 @@
 //
 
 import UIKit
-import Alamofire
-class MoviesViewController: UIViewController {
+import Kingfisher
+
+ class MoviesViewController: UIViewController {
  
     let searchBar = UISearchBar()
     var localMovieList : [Movie] = []
@@ -15,7 +16,7 @@ class MoviesViewController: UIViewController {
     
     var collectionView: UICollectionView!
     
-    var data = [UIColor.red, UIColor.green, UIColor.blue, UIColor.green, UIColor.purple, UIColor.orange, UIColor.blue, UIColor.green, UIColor.blue, UIColor.green, UIColor.red, UIColor.green, UIColor.blue, UIColor.green, UIColor.purple, UIColor.orange, UIColor.blue, UIColor.green, UIColor.blue, UIColor.green, UIColor.red, UIColor.green, UIColor.blue, UIColor.green, UIColor.purple, UIColor.orange, UIColor.blue, UIColor.green, UIColor.blue, UIColor.green, UIColor.red, UIColor.green, UIColor.blue, UIColor.green, UIColor.purple, UIColor.orange, UIColor.blue, UIColor.green, UIColor.blue, UIColor.green]
+ 
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
@@ -30,14 +31,14 @@ class MoviesViewController: UIViewController {
         self.newCollection.register(SubclassedCollectionViewCell.self, forCellWithReuseIdentifier: "customMovieCell")
       
   
-        //Router.createModule(ref: self)
+   Router.createModule(ref: self)
        
         
         getDatasFromInteractor()
     }
    
     
-     
+ 
     
     private lazy var newCollection: UICollectionView = {
             let layout = UICollectionViewFlowLayout()
@@ -46,11 +47,11 @@ class MoviesViewController: UIViewController {
            // layout.sectionInset = .zero
         
         layout.itemSize = CGSize(width: 200, height: 300)
+        
         layout.scrollDirection = .vertical
             let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(SubclassedCollectionViewCell.self, forCellWithReuseIdentifier: "customMovieCell")
-        collectionView.backgroundColor = .black
-        
+ 
         collectionView.translatesAutoresizingMaskIntoConstraints = false
        return collectionView
         }()
@@ -89,8 +90,7 @@ class MoviesViewController: UIViewController {
         
         
         view.addSubview(newCollection)
-        view.backgroundColor = .white
-        searchBar.sizeToFit()
+         searchBar.sizeToFit()
       //
    
        navigationController?.navigationBar.prefersLargeTitles = true
@@ -109,14 +109,16 @@ class MoviesViewController: UIViewController {
         navigationController?.navigationBar.standardAppearance = appearance;
         navigationController?.navigationBar.scrollEdgeAppearance = navigationController?.navigationBar.standardAppearance
   
- 
-        NSLayoutConstraint.activate([
+         NSLayoutConstraint.activate([
         
             newCollection.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             newCollection.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             newCollection.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
            // newCollection.heightAnchor.constraint(equalToConstant: 100)
             newCollection.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+         
+            
+            
 
             
         ])
@@ -146,7 +148,9 @@ extension MoviesViewController : UISearchBarDelegate{
 
 extension MoviesViewController : PresenterToViewProtocol{
     func sendPresenterToView(data: [Movie]) {
+        print("over here4")
         localMovieList = data
+        newCollection.reloadData()
         print(localMovieList[0].Year)
     }
 }
@@ -160,8 +164,17 @@ extension MoviesViewController : PresenterToViewProtocol{
 extension MoviesViewController : UICollectionViewDelegate, UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "customMovieCell", for: indexPath) as? SubclassedCollectionViewCell
-            let data = self.data[indexPath.item]
-        cell?.setupCell(color: data)
+        print("over here5")
+         let data = localMovieList[indexPath.item]
+ 
+        cell!.textView.text = data.Title ?? "not"
+       
+
+         cell?.imageView.kf.setImage(with: URL(string: data.Poster ?? ""))
+ 
+         if cell == nil{
+            print("cell is nil")
+        }
         
         return cell ?? UICollectionViewCell()
         
@@ -170,7 +183,7 @@ extension MoviesViewController : UICollectionViewDelegate, UICollectionViewDataS
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return data.count
+        return localMovieList.count
     }
     
     
@@ -179,12 +192,58 @@ extension MoviesViewController : UICollectionViewDelegate, UICollectionViewDataS
 
 
 class SubclassedCollectionViewCell: UICollectionViewCell {
+       lazy var textView : UITextView = {
+        let textView = UITextView()
+        textView.translatesAutoresizingMaskIntoConstraints = false
+        textView.font = UIFont.boldSystemFont(ofSize: 15)
+         return textView
+    }()
+  
     
-     
-     
-    func setupCell(color: UIColor) {
-        self.backgroundColor = color
-       
+    lazy var imageView : UIImageView = {
     
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.backgroundColor = .yellow
+         return imageView
+    }()
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+    
+        self.contentView.addSubview(imageView)
+        //self.contentView.addSubview(textView)
+        imageView.addSubview(textView)
+        NSLayoutConstraint.activate([
+            
+            imageView.widthAnchor.constraint(equalTo: self.widthAnchor),
+            imageView.heightAnchor.constraint(equalTo: self.heightAnchor),
+            imageView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            imageView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            
+           
+             textView.widthAnchor.constraint(equalToConstant: 200),
+            textView.heightAnchor.constraint(equalToConstant: 50)
+           
+            
+
+        ])
+    
+        textView.textAlignment = .center
+      
     }
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    override var bounds: CGRect {
+        didSet {
+            contentView.frame = bounds
+        }
+    }
+    
+    
+    
+    
+     
+   
 }
