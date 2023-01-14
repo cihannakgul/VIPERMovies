@@ -7,22 +7,23 @@
 
 import UIKit
 import Kingfisher
+import Lottie
 
  class MoviesViewController: UIViewController {
  
     let searchBar = UISearchBar()
     var localMovieList : [Movie] = []
     var presenter : ViewToPresenterProtocol?
-    
-    var collectionView: UICollectionView!
-    
- 
+     
+     var animationView : LottieAnimationView?
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureUI()
-        searchBar.delegate = self
-    
         
+       configureUI()
+        searchBar.delegate = self
+        
+        //LottieAnimation()
+
         newCollection.dataSource = self
         newCollection.delegate = self
         
@@ -37,17 +38,21 @@ import Kingfisher
         getDatasFromInteractor()
     }
    
-    
+     func LottieAnimation(){
+         animationView = .init(name: "movie")
+        animationView!.frame = view.bounds
+        animationView!.contentMode = .scaleAspectFit
+          animationView!.animationSpeed = 0.5
+        
+          view.addSubview(animationView!)
+           animationView!.play()
+         
+     }
  
     
     private lazy var newCollection: UICollectionView = {
             let layout = UICollectionViewFlowLayout()
-           // layout.minimumLineSpacing = .zero
-           // layout.minimumInteritemSpacing = .zero
-           // layout.sectionInset = .zero
-        
-        layout.itemSize = CGSize(width: 200, height: 300)
-        
+          layout.itemSize = CGSize(width: 200, height: 300)
         layout.scrollDirection = .vertical
             let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(SubclassedCollectionViewCell.self, forCellWithReuseIdentifier: "customMovieCell")
@@ -86,12 +91,9 @@ import Kingfisher
     
     
     func configureUI(){
-        
-        
-        
+         
         view.addSubview(newCollection)
          searchBar.sizeToFit()
-      //
    
        navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.barStyle = .black
@@ -99,13 +101,11 @@ import Kingfisher
      
         
         navigationItem.title = "Movies List"
-      
- 
-        let appearance = UINavigationBarAppearance()
+      let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
         appearance.backgroundColor = .systemMint
         appearance.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-        
+        self.navigationItem.setHidesBackButton(true, animated: true)
         navigationController?.navigationBar.standardAppearance = appearance;
         navigationController?.navigationBar.scrollEdgeAppearance = navigationController?.navigationBar.standardAppearance
   
@@ -116,21 +116,13 @@ import Kingfisher
             newCollection.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
            // newCollection.heightAnchor.constraint(equalToConstant: 100)
             newCollection.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-         
-            
-            
-
-            
-        ])
+          ])
        
         searchBarShow(shouldShow: true)
          
-     
-        
+      
     }
-    
      
-
 }
 
 extension MoviesViewController : UISearchBarDelegate{
@@ -155,12 +147,7 @@ extension MoviesViewController : PresenterToViewProtocol{
     }
 }
 
-
-
-
-
-
-
+ 
 extension MoviesViewController : UICollectionViewDelegate, UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "customMovieCell", for: indexPath) as? SubclassedCollectionViewCell
@@ -240,10 +227,5 @@ class SubclassedCollectionViewCell: UICollectionViewCell {
             contentView.frame = bounds
         }
     }
-    
-    
-    
-    
      
-   
 }

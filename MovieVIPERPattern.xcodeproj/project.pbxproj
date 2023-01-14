@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F03678362973060500790793 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = F03678352973060500790793 /* Lottie */; };
+		F03678392973094800790793 /* movie.json in Resources */ = {isa = PBXBuildFile; fileRef = F03678382973094800790793 /* movie.json */; };
+		F036783B29731D1600790793 /* AnimationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F036783A29731D1600790793 /* AnimationViewController.swift */; };
 		F067A92129724D8E00A13873 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = F067A92029724D8E00A13873 /* Kingfisher */; };
 		F0A24B3A2951EBD900AD98E4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A24B392951EBD900AD98E4 /* AppDelegate.swift */; };
 		F0A24B3C2951EBD900AD98E4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A24B3B2951EBD900AD98E4 /* SceneDelegate.swift */; };
@@ -24,6 +27,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F03678382973094800790793 /* movie.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = movie.json; sourceTree = "<group>"; };
+		F036783A29731D1600790793 /* AnimationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationViewController.swift; sourceTree = "<group>"; };
 		F0A24B362951EBD900AD98E4 /* MovieVIPERPattern.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieVIPERPattern.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0A24B392951EBD900AD98E4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F0A24B3B2951EBD900AD98E4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -47,12 +52,30 @@
 			files = (
 				F067A92129724D8E00A13873 /* Kingfisher in Frameworks */,
 				F0A24B4F2951EC2500AD98E4 /* Alamofire in Frameworks */,
+				F03678362973060500790793 /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F03678372973093900790793 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				F03678382973094800790793 /* movie.json */,
+				F0A24B422951EBDC00AD98E4 /* Assets.xcassets */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		F036783C297321AB00790793 /* AnimationPageModule */ = {
+			isa = PBXGroup;
+			children = (
+				F036783A29731D1600790793 /* AnimationViewController.swift */,
+			);
+			path = AnimationPageModule;
+			sourceTree = "<group>";
+		};
 		F0A24B2D2951EBD900AD98E4 = {
 			isa = PBXGroup;
 			children = (
@@ -72,10 +95,11 @@
 		F0A24B382951EBD900AD98E4 /* MovieVIPERPattern */ = {
 			isa = PBXGroup;
 			children = (
+				F036783C297321AB00790793 /* AnimationPageModule */,
+				F03678372973093900790793 /* Assets */,
 				F0E932CA2970C5B3007D3DC6 /* HomePageModule */,
 				F0A24B392951EBD900AD98E4 /* AppDelegate.swift */,
 				F0A24B3B2951EBD900AD98E4 /* SceneDelegate.swift */,
-				F0A24B422951EBDC00AD98E4 /* Assets.xcassets */,
 				F0A24B442951EBDC00AD98E4 /* LaunchScreen.storyboard */,
 				F0A24B472951EBDC00AD98E4 /* Info.plist */,
 			);
@@ -164,6 +188,7 @@
 			packageProductDependencies = (
 				F0A24B4E2951EC2500AD98E4 /* Alamofire */,
 				F067A92029724D8E00A13873 /* Kingfisher */,
+				F03678352973060500790793 /* Lottie */,
 			);
 			productName = MovieVIPERPattern;
 			productReference = F0A24B362951EBD900AD98E4 /* MovieVIPERPattern.app */;
@@ -196,6 +221,7 @@
 			packageReferences = (
 				F0A24B4D2951EC2500AD98E4 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				F067A91F29724D8E00A13873 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				F03678342973060500790793 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 			);
 			productRefGroup = F0A24B372951EBD900AD98E4 /* Products */;
 			projectDirPath = "";
@@ -213,6 +239,7 @@
 			files = (
 				F0A24B462951EBDC00AD98E4 /* LaunchScreen.storyboard in Resources */,
 				F0A24B432951EBDC00AD98E4 /* Assets.xcassets in Resources */,
+				F03678392973094800790793 /* movie.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -225,6 +252,7 @@
 			files = (
 				F0E932C029702CBC007D3DC6 /* Interactor.swift in Sources */,
 				F0E932C229702CD0007D3DC6 /* Presenter.swift in Sources */,
+				F036783B29731D1600790793 /* AnimationViewController.swift in Sources */,
 				F0A24B3E2951EBD900AD98E4 /* MoviesViewController.swift in Sources */,
 				F0A24B532951ED5E00AD98E4 /* MovieResponse.swift in Sources */,
 				F0E932C629702CF3007D3DC6 /* Router.swift in Sources */,
@@ -442,6 +470,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		F03678342973060500790793 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
 		F067A91F29724D8E00A13873 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
@@ -461,6 +497,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		F03678352973060500790793 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F03678342973060500790793 /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
+		};
 		F067A92029724D8E00A13873 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = F067A91F29724D8E00A13873 /* XCRemoteSwiftPackageReference "Kingfisher" */;
